@@ -1,5 +1,7 @@
 # Liver Cirrhosis — Survival Analysis & Stage Classification
 
+**🔗 Live demo: [portfolio-project-5ghylnfrhvmiwmgo29eakw.streamlit.app](https://portfolio-project-5ghylnfrhvmiwmgo29eakw.streamlit.app/)**
+
 Data Science portfolio project (Stackfuel). Mayo Clinic clinical trial data
 on primary biliary cirrhosis (PBC) — 418 patients, comparing the drug
 D-penicillamine against placebo.
@@ -37,6 +39,10 @@ uv run jupyter notebook notebooks/
 Interactive Streamlit app: enter a patient's clinical values, get a predicted
 disease Stage (Random Forest) and a survival/risk estimate (Cox PH) — reuses
 the exact preprocessing and models from the two notebooks.
+
+Try it live: **https://portfolio-project-5ghylnfrhvmiwmgo29eakw.streamlit.app/**
+
+Or run it locally:
 
 ```bash
 uv run streamlit run app.py
