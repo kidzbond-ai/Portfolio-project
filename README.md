@@ -6,11 +6,9 @@ D-penicillamine against placebo.
 
 ## Data
 
-`data/cirrhosis.csv` — not included in this repository (download separately).
+`data/cirrhosis.csv` — included in this repository (418 rows, 32 KB).
 
-Source: [Kaggle — fedesoriano/cirrhosis-prediction-dataset](https://www.kaggle.com/datasets/fedesoriano/cirrhosis-prediction-dataset)
-
-Download it and place the file at `data/cirrhosis.csv`.
+Source: [Kaggle — fedesoriano/cirrhosis-prediction-dataset](https://www.kaggle.com/datasets/fedesoriano/cirrhosis-prediction-dataset), data files © original authors.
 
 ## Structure
 
