@@ -42,6 +42,11 @@ the exact preprocessing and models from the two notebooks.
 uv run streamlit run app.py
 ```
 
+<p align="center">
+  <img src="assets/demo_form.png" width="45%" alt="Demo app input form">
+  <img src="assets/demo_results.png" width="45%" alt="Demo app prediction results">
+</p>
+
 ## Plan
 
 1. **Survival analysis** — Kaplan-Meier curves, Drug vs Placebo comparison, Cox Proportional Hazards ✅
