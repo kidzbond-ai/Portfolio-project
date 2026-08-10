@@ -1,4 +1,4 @@
-# Liver Cirrhosis — Survival Analysis
+# Liver Cirrhosis — Survival Analysis & Stage Classification
 
 Data Science portfolio project (Stackfuel). Mayo Clinic clinical trial data
 on primary biliary cirrhosis (PBC) — 418 patients, comparing the drug
@@ -17,9 +17,12 @@ Download it and place the file at `data/cirrhosis.csv`.
 ```
 Portfolie_project_DS/
 ├── data/
-│   └── cirrhosis.csv       # place downloaded file here
+│   └── cirrhosis.csv               # place downloaded file here
 ├── notebooks/
-│   └── 01_survival.ipynb   # Kaplan-Meier + Cox PH
+│   ├── 01_survival.ipynb           # Kaplan-Meier + Cox PH
+│   └── 02_classification.ipynb     # Stage prediction + SHAP
+├── survival_analysis_deck.pptx
+├── censoring_kaplan_meier_slide.pptx
 ├── main.py
 └── pyproject.toml
 ```
@@ -28,11 +31,25 @@ Portfolie_project_DS/
 
 ```bash
 uv sync
-uv run jupyter notebook notebooks/01_survival.ipynb
+uv run jupyter notebook notebooks/
 ```
 
 ## Plan
 
-1. **Survival analysis** — Kaplan-Meier curves, Drug vs Placebo comparison, Cox Proportional Hazards
-2. **Classification** — predict `Stage` (1-4) from biomarkers
-3. **Interpretation** — feature importance (SHAP)
+1. **Survival analysis** — Kaplan-Meier curves, Drug vs Placebo comparison, Cox Proportional Hazards ✅
+2. **Classification** — predict `Stage` (1-4) from biomarkers, interpret with SHAP ✅
+
+## Results
+
+**Phase 1 — Survival analysis**
+- Median survival across all 418 patients: **3395 days (≈9.3 years)**, estimated with Kaplan-Meier accounting for censoring (61.5% of the cohort).
+- D-penicillamine shows **no statistically significant survival benefit** over placebo — confirmed by both a log-rank test (`p = 0.75`) and a multivariate Cox model (`p = 0.97`), matching the actual historical finding of the Mayo Clinic PBC trial.
+- What predicts risk: **Bilirubin**, **Prothrombin time**, and disease **Stage** significantly increase risk; **Albumin** is protective — standard, biologically sensible liver-function markers.
+- Limitation: the proportional-hazards assumption drifts over time for Bilirubin and Prothrombin (doesn't affect the Drug conclusion, which passes its own check).
+
+**Phase 2 — Classification (disease Stage)**
+- 276/418 patients had complete data on 15 biomarkers; target has real class imbalance (`Stage 1`: 12 patients vs. 94–111 for the rest).
+- Model comparison: Logistic Regression (34% accuracy) → Random Forest, unregularized (100% train / 43% test — overfit) → Random Forest, regularized (**48.5% ± 6.8%** via 5-fold CV — the honest number).
+- Most important predictor: **Hepatomegaly**, a simple clinical exam finding, outperforms every lab value.
+- Interesting contrast with Phase 1: what predicts *death risk* (Bilirubin, Prothrombin, Albumin, Stage) differs from what predicts the *Stage label itself* (Hepatomegaly, Cholesterol, SGOT) — predicting severity and predicting survival aren't the same question.
+- Biggest limitation: `Stage 1`'s 12 patients are too few for any model to learn reliably — a data problem, not a modeling one.
