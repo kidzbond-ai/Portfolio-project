@@ -23,6 +23,7 @@ Portfolie_project_DS/
 │   └── 02_classification.ipynb     # Stage prediction + SHAP
 ├── survival_analysis_deck.pptx
 ├── censoring_kaplan_meier_slide.pptx
+├── app.py                          # Streamlit demo
 ├── main.py
 └── pyproject.toml
 ```
@@ -34,10 +35,21 @@ uv sync
 uv run jupyter notebook notebooks/
 ```
 
+## Demo app
+
+Interactive Streamlit app: enter a patient's clinical values, get a predicted
+disease Stage (Random Forest) and a survival/risk estimate (Cox PH) — reuses
+the exact preprocessing and models from the two notebooks.
+
+```bash
+uv run streamlit run app.py
+```
+
 ## Plan
 
 1. **Survival analysis** — Kaplan-Meier curves, Drug vs Placebo comparison, Cox Proportional Hazards ✅
 2. **Classification** — predict `Stage` (1-4) from biomarkers, interpret with SHAP ✅
+3. **Demo app** — interactive Streamlit prediction tool ✅
 
 ## Results
 
