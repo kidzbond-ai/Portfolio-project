@@ -15,14 +15,13 @@ Source: [Kaggle — fedesoriano/cirrhosis-prediction-dataset](https://www.kaggle
 ```
 Portfolie_project_DS/
 ├── data/
-│   └── cirrhosis.csv               # place downloaded file here
+│   └── cirrhosis.csv               # included in the repo
 ├── notebooks/
 │   ├── 01_survival.ipynb           # Kaplan-Meier + Cox PH
 │   └── 02_classification.ipynb     # Stage prediction + SHAP
 ├── survival_analysis_deck.pptx
 ├── censoring_kaplan_meier_slide.pptx
 ├── app.py                          # Streamlit demo
-├── main.py
 └── pyproject.toml
 ```
 
